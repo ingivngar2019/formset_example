@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Example Formsets  Fixed{% endblock %}
+{% load static %}
+{% block content %}
+<div id="content-container" class="container p-none">
+    <div id="al-container" class="side-p">
+        <div id="al-control" style="border-bottom-style: dotted; border-bottom-width: thin;" class="mb-2">
+            <h1 class="ad-mh">{{ heading }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 text-muted">
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-md-6 col-lg-6 text-right text-muted">
+                <p>{% now "l j \d\e F Y" %}</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>El listado muestra precargado el formulario para la generacion de un libro por género configurado en
+                    el
+                    sistema.</h4>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <form class="form-horizontal" method="POST" action="">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    <div class="row form-row spacer my-1">
+                        <div class="col-2">
+                            <label><b>{{form.name.label}}:</b></label>
+                            {# Include the hidden fields #}
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                {{ form.name}}
+                                {{ form.name.errors }}
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <label><b>{{form.genero.label}}:</b></label>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group">
+                                {% for g in generos %}
+                                    {% if g.id == form.genero.value %}
+                                    <p>{{g.desc}}</p>
+                                    {% endif%}
+                                {% endfor %}
+                                <!--                                {{ form.genre }}-->
+<!--                                {{ form.genre.errors }}-->
+<!--                                {{ form.genre.value }}-->
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                    <hr/>
+                    <div class="row spacer">
+                        <div class="col-4 offset-2">
+                            <button type="submit" class="btn btn-block btn-primary">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}
+{% block js %}
+
+
+<script type="text/javascript">
+
+
+</script>
+
+{% endblock js %}
+

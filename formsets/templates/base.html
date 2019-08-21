@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+{# Make modifiable head elements #}
+<head>
+
+    <title>{% block title %}Home {% endblock title %} | Examples Formsets</title>
+    {% block head_favicon %}
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+    {% endblock head_favicon %}
+    {% block head_meta %}
+    {% block head_meta_charset %}
+    <meta http-equiv="Content-Type"
+          content="text/html; charset=utf-8"/>
+    {% endblock head_meta_charset %}
+    {% block head_meta_contentlanguage %}
+    <meta http-equiv="Content-Language" value="en-US"/>
+    {% endblock head_meta_contentlanguage %}
+    {% block head_meta_viewport %}
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% endblock head_meta_viewport %}
+    {% endblock head_meta %}
+    {% block head_css %}
+    {% block head_css_site %}
+    <link href="{% static 'css/bootstrap.min.css' %}"
+          rel="stylesheet" media="screen">
+    <link href="{% static 'css/app.css' %}"
+          rel="stylesheet" media="screen">
+    <!--    FONTAWESOME CSS-->
+    <link href="{% static 'css/all.css' %}"
+          rel="stylesheet" media="screen">
+    <!--    JQUERY DATATABLE-->
+    <link href="{% static 'css/jquery.dataTables.min.css'  %}"
+          rel="stylesheet" type="text/css"/>
+    {% endblock head_css_site %}
+    {% block head_css_section %}{% endblock head_css_section %}
+    {% block head_css_page %}{% endblock head_css_page %}
+    {% endblock head_css %}
+
+</head>
+<body>
+{# Navigation Menu #}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark
+			">
+        <!-- fixed-top  -->
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/favicon.ico' %}" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;
+            <span id="elgPrintName1">FormSet Examples</span><span id="elgPrintName2">S.I.C.</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/formset/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/formset/">Usuario: {{ user.username }} <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout/">Cerrar sesión</a>
+                </li>
+
+                {% else %}
+                <li><a href="/login/">Acceder</a></li>&nbsp;&nbsp;
+
+                {% endif %}
+            </ul>
+            <!--form class="form-inline my-2 my-md-0">
+              <input class="form-control" type="text" placeholder="Search">
+            </form-->
+        </div>
+    </nav>
+</header>
+{# The Document Body #}
+<div id="site-wrapper">
+    {% block content %}
+    Oh oh, algo salió mal!
+    {% endblock content %}
+
+</div>
+
+{# The Footer #}
+<div class="footer">
+    <div class="container">
+        <p>Copyright Tecnología Aplicada a Negocios S.A. de C.V.</p>
+    </div>
+</div>
+{% include "_modal.html" %}
+</body>
+{# Set of blocks that can be used to display JavaScript files #}
+{% block footer_javascript %}
+{% block footer_javascript_site %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+
+{% endblock footer_javascript_site %}
+{% block footer_javascript_section %}{% endblock footer_javascript_section %}
+{% block footer_javascript_page %}{% endblock footer_javascript_page %}
+{% endblock footer_javascript %}
+{% block js %}
+{% endblock js %}
+</html>
