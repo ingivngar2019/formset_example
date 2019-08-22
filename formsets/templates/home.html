@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% load static %}
+{% block content %}
+<div id="content-container" class="container p-none">
+    <div id="al-container" class="side-p">
+        <div id="al-control" style="border-bottom-style: dotted; border-bottom-width: thin;" class="mb-2">
+            <h1 class="ad-mh">Inicio</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 text-muted">
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-md-6 col-lg-6 text-right text-muted">
+                <p>{% now "l j \d\e F Y" %}</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>WELCOME!!!</h2>
+            </div>
+        </div>
+        <br/>
+
+    </div>
+</div>
+
+{% endblock content %}
+{% block js %}
+
+
+<script type="text/javascript">
+
+
+</script>
+
+{% endblock js %}
+
