@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse, reverse_lazy
 
 # Create your models here.
 
@@ -7,7 +8,10 @@ class Receta(models.Model):
     descripcion = models.TextField()
 
     def __str__(self):
-        return self.descripcion
+        return self.titulo
+
+    def get_absolute_url(self):
+        return reverse('editar', kwargs={'receta_id': self.id})
 
 
 class Ingrediente(models.Model):

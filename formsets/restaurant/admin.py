@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 class RecetaAdmin(admin.ModelAdmin):
-    list_display = ('descripcion', 'id')
+    list_display = ('titulo','descripcion', 'id')
 
 admin.site.register(Receta, RecetaAdmin)
 

@@ -1,0 +1,129 @@
+
+{% extends 'base.html' %}
+{% block title %}Registro-edicion{% endblock %}
+{% load static %}
+{% block content %}
+<div id="content-container" class="container p-none">
+    <div id="al-container" class="side-p">
+        <div id="al-control" style="border-bottom-style: dotted; border-bottom-width: thin;" class="mb-2">
+            <h1 class="ad-mh">Registro-edicion</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 text-muted">
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-md-6 col-lg-6 text-right text-muted">
+                <p>{% now "l j \d\e F Y" %}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Demo del uso de formsets relacionados a un Modelo Padre.</h4>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col">
+                <form method="post" action="#">
+    {% csrf_token %}
+
+    {{ ingredienteFormset.management_form }}
+    {{ instruccionFormset.management_form }}
+
+    <fieldset class="form ">
+        {% for field in form %}
+            <div class="form-row">
+                <div class="field-box">
+                    {{ field.errors }}
+                    {{ field.label_tag }}: {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    <fieldset>
+        <legend>Ingredientes</legend>
+        <ul id='formset-ingredientes'>
+            {% for form in ingredienteFormset %}
+                {{ form.id }}
+                <li>
+                    {{ form.as_ul }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <button id='btnIngrediente'>Añadir Ingrediente</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Instrucciones</legend>
+        <ul id='formset-instrucciones'>
+            {% for form in instruccionFormset %}
+                {{ form.id }}
+                <li>
+                    {{ form.as_ul }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <button id='btnInstruccion'>Añadir Instrucción</button>
+    </fieldset>
+
+    <button>Enviar</button>
+</form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
+{% block js %}
+
+
+<script type="text/javascript">
+$(function(){
+
+    // Reemplaza todas las coincidencias en vez de solo la primera
+    function replaceAll(text, busca, reemplaza){
+          while (text.toString().indexOf(busca) != -1)
+            text = text.toString().replace(busca, reemplaza);
+          return text;
+    }
+
+    var $totalIngredientes = $('#id_ingrediente_set-TOTAL_FORMS');
+
+    $('#btnIngrediente').click(function(event) {
+        event.preventDefault();
+        var total = parseInt($totalIngredientes.val(), 10);
+        var clon = $('script[type="template/ingrediente"]').html();
+        clon_html = replaceAll(clon, '__prefix__', (total).toString());
+        $('#formset-ingredientes').append(clon_html);
+        $totalIngredientes.val(total +  1);
+    });
+
+    var $totalInstrucciones = $('#id_instruccion_set-TOTAL_FORMS');
+
+    $('#btnInstruccion').click(function(event) {
+        event.preventDefault();
+        var total = parseInt($totalInstrucciones.val(), 10);
+        var clon = $('script[type="template/instruccion"]').html();
+        clon_html = replaceAll(clon, '__prefix__', (total).toString());
+        $('#formset-instrucciones').append(clon_html);
+        $totalInstrucciones.val(total +  1);
+    });
+})
+
+</script>
+
+
+<script type='template/ingrediente'>
+    {{ ingredienteFormset.empty_form.as_ul }}
+</script>
+
+<script type='template/instruccion'>
+    {{ instruccionFormset.empty_form.as_ul }}
+</script>
+
+{% endblock js %}
+

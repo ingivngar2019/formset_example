@@ -60,13 +60,19 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'lista' %}">Recetas <span class="sr-only">(current)</span></a>
+                </li>
 
+                {% endif %}
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="/formset/">Usuario: {{ user.username }} <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/formset/">Usuario: {{ user.username }} <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 {% if request.user.is_superuser %}
                 <li class="nav-item">
