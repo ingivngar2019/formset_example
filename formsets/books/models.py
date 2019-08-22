@@ -20,7 +20,30 @@ class Book(models.Model):
 
     class Meta:
         db_table = 'book'
-        verbose_name_plural = 'Libros'
+        verbose_name_plural = 'Books'
 
     def __str__(self):
         return self.name
+
+
+class Autor(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'autor'
+        verbose_name_plural = 'Autores'
+
+    def __str__(self):
+        return self.name
+
+class Libro(models.Model):
+    author = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'libro'
+        verbose_name_plural = 'Libros'
+
+    def __str__(self):
+        return self.title
+
