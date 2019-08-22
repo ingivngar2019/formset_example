@@ -48,7 +48,7 @@
         <!-- fixed-top  -->
         <a class="navbar-brand" href="#">
             <img src="{% static 'images/favicon.ico' %}" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;
-            <span id="elgPrintName1">FormSet Examples</span><span id="elgPrintName2">S.I.C.</span></a>
+            <span id="elgPrintName1">FormSet Examples</span><span id="elgPrintName2">FORMSETS</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -58,13 +58,12 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/formset/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
 
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
                 {% if user.is_authenticated %}
                 <li class="nav-item active">
                     <a class="nav-link" href="/formset/">Usuario: {{ user.username }} <span class="sr-only">(current)</span></a>
@@ -72,15 +71,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/logout/">Cerrar sesión</a>
                 </li>
-
                 {% else %}
                 <li><a href="secrets/login/">Acceder</a></li>&nbsp;&nbsp;
 
                 {% endif %}
             </ul>
-            <!--form class="form-inline my-2 my-md-0">
-              <input class="form-control" type="text" placeholder="Search">
-            </form-->
+
         </div>
     </nav>
 </header>

@@ -14,16 +14,35 @@ class BookForm(forms.Form):
         })
     )
 
-    # genre = forms.ModelChoiceField(
-    #     queryset=Genre.objects.all(),
-    #     required=True,
-    #     label='Genre',
-    #     widget=forms.Select(attrs={
-    #         'placeholder': '',
-    #         'class': 'form-control',
-    #         'readonly': 'yes'
-    #     })
-    # )
+    genre = forms.ModelChoiceField(
+        queryset=Genre.objects.all(),
+        required=True,
+        label='Genre',
+        widget=forms.Select(attrs={
+            'placeholder': '',
+            'class': 'form-control',
+        })
+    )
+
+    genero = forms.CharField(
+        label='Genre',
+        widget = forms.HiddenInput(attrs={
+            'class': 'form-control',
+        })
+    )
+
+BookFormset = formset_factory(BookForm, extra=1)
+
+class FixedBookForm(forms.Form):
+
+    fields = ('name','genre',)
+    name = forms.CharField(
+        label='Book Name',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter Book Name here'
+        })
+    )
 
     genero = forms.CharField(
         label='Genre',
@@ -33,7 +52,6 @@ class BookForm(forms.Form):
     )
 
 
-BookFormset = formset_factory(BookForm, extra=1)
 
 class BaseAddableFormSet( BaseFormSet):
     def add_form(self, **kwargs):

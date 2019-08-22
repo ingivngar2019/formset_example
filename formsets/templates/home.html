@@ -16,24 +16,68 @@
             </div>
 
         </div>
+
+        <br/>
         <div class="row">
-            <div class="col">
-                <h2>WELCOME!!!</h2>
+            <div class="col-4">
+                <!-- List group -->
+                <div class="list-group" id="myList" role="tablist">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list" href="#demo1"
+                       role="tab">Demo 1</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#demo2" role="tab">Demo
+                        2</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#demo3"
+                       role="tab">Demo 3</a>
+
+                </div>
+            </div>
+            <div class="col-8">
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="demo1" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">Ejemplo del uso de un formset, añadir y eliminar de manera dinamica
+                                    forms dentro del formset, con ayuda de jQuery.</p>
+                                <a href='/formset/' class="card-link">Ver demo</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="demo2" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                 <p class="card-text">Ejemplo del uso de un formset fijo, armado desde el view conforme a un modelo.</p>
+                                <a href='/formset2/' class="card-link">Ver demo</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="demo3" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                 <p class="card-text">Ejemplo del uso de formsets relacionados a un Modelo Padre, dentro de un mismo Form (html).</p>
+                                <a href='/formset3/' class="card-link">Ver demo</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
-        <br/>
-
     </div>
-</div>
 
-{% endblock content %}
-{% block js %}
-
-
-<script type="text/javascript">
+    {% endblock content %}
+    {% block js %}
 
 
-</script>
+    <script type="text/javascript">
 
-{% endblock js %}
+    </script>
+
+    {% endblock js %}
 

@@ -18,14 +18,14 @@ from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 
-from .books.views import create_book_normal, create_book_fixed
+from .books.views import create_book_normal, create_book_fixed, create_book_related
 
 urlpatterns = [
     path('secrets/', admin.site.urls), # url change for security
     re_path(r'^$', TemplateView.as_view(template_name="home.html"), name="home"),
     re_path(r'^formset/$', create_book_normal, name='example'),
     re_path(r'^formset2/$', create_book_fixed, name='example2'),
-    re_path(r'^formset3/$', create_book_fixed, name='example3'),
+    re_path(r'^formset3/$', create_book_related, name='example3'),
 
 
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), {'next_page': '/'}, name='logout'),
