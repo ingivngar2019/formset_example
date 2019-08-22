@@ -68,6 +68,11 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/formset/">Usuario: {{ user.username }} <span class="sr-only">(current)</span></a>
                 </li>
+                {% if request.user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/secrets/">Administración</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="/logout/">Cerrar sesión</a>
                 </li>
