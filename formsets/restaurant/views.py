@@ -18,11 +18,14 @@ def recetas(request):
 
 
 def registro_edicion(request, receta_id=None):
+    heading= 'heading_message'
     template_name = 'restaurant/registro-edicion.html'
     if receta_id:
         receta = Receta.objects.get(pk=receta_id)
+        heading = 'Edición'
     else:
         receta = Receta()
+        heading = 'Registro'
 
     IngredienteFormSet = inlineformset_factory(Receta, Ingrediente, extra=0, can_delete=True,fields=('descripcion',))
     InstruccionFormSet = inlineformset_factory(Receta, Instruccion, extra=0, can_delete=True,fields=('descripcion','numero'))
@@ -31,6 +34,10 @@ def registro_edicion(request, receta_id=None):
         form = RecetaForm(request.POST, instance=receta)
         ingredienteFormset = IngredienteFormSet(request.POST, instance=receta)
         instruccionFormset = InstruccionFormSet(request.POST, instance=receta)
+        print('ingredienteFormset:')
+        print(ingredienteFormset)
+        print('instruccionFormset:')
+        print(instruccionFormset)
 
         if form.is_valid() and ingredienteFormset.is_valid() and instruccionFormset.is_valid():
             form.save()

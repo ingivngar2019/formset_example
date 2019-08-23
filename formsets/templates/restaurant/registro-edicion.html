@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block title %}Registro-edicion{% endblock %}
 {% load static %}
@@ -6,7 +5,7 @@
 <div id="content-container" class="container p-none">
     <div id="al-container" class="side-p">
         <div id="al-control" style="border-bottom-style: dotted; border-bottom-width: thin;" class="mb-2">
-            <h1 class="ad-mh">Registro-edicion</h1>
+            <h1 class="ad-mh">{{heading}}</h1>
         </div>
         <div class="row">
             <div class="col-md-6 col-lg-6 text-muted">
@@ -25,52 +24,53 @@
         <div class="row">
             <div class="col">
                 <form method="post" action="#">
-    {% csrf_token %}
+                    {% csrf_token %}
 
-    {{ ingredienteFormset.management_form }}
-    {{ instruccionFormset.management_form }}
+                    {{ ingredienteFormset.management_form }}
+                    {{ instruccionFormset.management_form }}
 
-    <fieldset class="form ">
-        {% for field in form %}
-            <div class="form-row">
-                <div class="field-box">
-                    {{ field.errors }}
-                    {{ field.label_tag }}: {{ field }}
-                </div>
-            </div>
-        {% endfor %}
-    </fieldset>
+                    <fieldset class="form ">
+                        {% for field in form %}
+                        <div class="form-row">
+                            <div class="field-box form-inline">
+                                {{ field.errors }}
+                                {{ field.label_tag }}&nbsp;{{ field }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </fieldset>
+                    <hr/>
+                    <fieldset>
+                        <legend>Ingredientes</legend>
+                        <ul id='formset-ingredientes'>
+                            {% for form in ingredienteFormset %}
+                            {{ form.id }}
+                            <li>
+                                {{ form.as_ul }}
+                            </li>
+                            {% endfor %}
+                        </ul>
 
-    <fieldset>
-        <legend>Ingredientes</legend>
-        <ul id='formset-ingredientes'>
-            {% for form in ingredienteFormset %}
-                {{ form.id }}
-                <li>
-                    {{ form.as_ul }}
-                </li>
-            {% endfor %}
-        </ul>
+                        <button id='btnIngrediente' class="btn btn-secondary">Añadir Ingrediente</button>
+                    </fieldset>
+                    <hr/>
+                    <fieldset>
+                        <legend>Instrucciones</legend>
+                        <ul id='formset-instrucciones'>
+                            {% for form in instruccionFormset %}
+                            {{ form.id }}
+                            <li>
+                                {{ form.as_ul }}
+                            </li>
+                            {% endfor %}
+                        </ul>
 
-        <button id='btnIngrediente'>Añadir Ingrediente</button>
-    </fieldset>
-
-    <fieldset>
-        <legend>Instrucciones</legend>
-        <ul id='formset-instrucciones'>
-            {% for form in instruccionFormset %}
-                {{ form.id }}
-                <li>
-                    {{ form.as_ul }}
-                </li>
-            {% endfor %}
-        </ul>
-
-        <button id='btnInstruccion'>Añadir Instrucción</button>
-    </fieldset>
-
-    <button>Enviar</button>
-</form>
+                        <button id='btnInstruccion' class="btn btn-secondary">Añadir Instrucción</button>
+                    </fieldset>
+                    <br/>
+                    <hr/>
+                    <button type="submit" class="btn btn-primary float-right">Enviar</button>
+                </form>
             </div>
         </div>
 
@@ -113,6 +113,7 @@ $(function(){
         $totalInstrucciones.val(total +  1);
     });
 })
+
 
 </script>
 
