@@ -14,10 +14,10 @@ class RecetaForm(forms.ModelForm):
             'placeholder': 'Introducir Título'
         })
     )
-        # descripcion = forms.CharField(
-        #     label='Descripción',
-        #     widget=forms.TextInput(attrs={
-        #         'class': 'form-control',
-        #         'placeholder': 'Enter Description'
-        #     })
-        # )
+    # descripcion = forms.CharField(
+    #     label='Descripción',
+    #     widget=forms.TextInput(attrs={
+    #         'class': 'form-control',
+    #         'placeholder': 'Enter Description'
+    #     })
+    # )

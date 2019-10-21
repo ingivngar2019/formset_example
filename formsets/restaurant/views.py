@@ -34,10 +34,7 @@ def registro_edicion(request, receta_id=None):
         form = RecetaForm(request.POST, instance=receta)
         ingredienteFormset = IngredienteFormSet(request.POST, instance=receta)
         instruccionFormset = InstruccionFormSet(request.POST, instance=receta)
-        print('ingredienteFormset:')
-        print(ingredienteFormset)
-        print('instruccionFormset:')
-        print(instruccionFormset)
+
 
         if form.is_valid() and ingredienteFormset.is_valid() and instruccionFormset.is_valid():
             form.save()
